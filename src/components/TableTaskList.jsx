@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 
-export const TableTaskList = ({taskList, handlerCheckboxChange, handlerRemoveTask}) => {
+export const TableTaskList = ({taskList, handlerCheckboxChange, handlerRemoveTask, handlerInputTask, setTaskInput}) => {
 
+
+  const traerEditar = (task) => {
+    console.log(task)
+    setTaskInput(task.tarea);
+  }
 
   return (
     <table className="table table-dark table-striped table-hover w-75">
@@ -13,6 +18,7 @@ export const TableTaskList = ({taskList, handlerCheckboxChange, handlerRemoveTas
             <th>Descripción</th>
             <th>Estado</th>
             <th>Marcar</th>
+            <th>Editar</th>
             <th>Eliminar</th>
         </tr>
       </thead>
@@ -26,6 +32,9 @@ export const TableTaskList = ({taskList, handlerCheckboxChange, handlerRemoveTas
                     <td>{item.estado ? 'Completada' : 'Pendiente'}</td>
                     <td>
                         <input className="form-check-input" type="checkbox" onChange={()=>handlerCheckboxChange(item.id)} checked={item.estado} />
+                    </td>
+                    <td>
+                      <button className="btn btn-primary" value={item.id} onClick={()=>traerEditar(item)}>Editar</button>
                     </td>
                     <td >
                       <button className="btn btn-danger" onClick={() => handlerRemoveTask(item.id)}>Eliminar</button>

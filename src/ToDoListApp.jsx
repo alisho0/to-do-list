@@ -3,15 +3,11 @@ import { TableTaskList } from "./components/TableTaskList"
 import { FormTask } from "./components/FormTask";
 import { useTask } from "./hooks/useTask";
 
-const initialTaskList = {
-    id: 0,
-    tarea: 'Estudiar React', //aqui falla algonp
-    estado: false
-}
+
 
 export const ToDoListApp = () => {
 
-    const {handlerAddTask, handlerCheckboxChange, handlerInputTask, handlerRemoveTask, taskInput, taskList} = useTask()
+    const {handlerAddTask, handlerCheckboxChange, handlerInputTask, handlerRemoveTask, taskInput, taskList, setTaskInput} = useTask()
 
     useEffect(() => {
         sessionStorage.setItem('tasks', JSON.stringify(taskList));
@@ -24,7 +20,7 @@ export const ToDoListApp = () => {
         <h2>To Do List</h2>
 
             <FormTask handlerAddTask={handlerAddTask} handlerInputTask={handlerInputTask} taskInput={taskInput} />
-            <TableTaskList handlerRemoveTask={handlerRemoveTask} taskList={taskList} handlerCheckboxChange={handlerCheckboxChange}/>
+            <TableTaskList setTaskInput={setTaskInput} handlerInputTask={handlerInputTask} handlerRemoveTask={handlerRemoveTask} taskList={taskList} handlerCheckboxChange={handlerCheckboxChange}/>
         </div>
 
     </>

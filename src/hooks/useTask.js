@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+const initialTaskList = {
+    id: 0,
+    tarea: 'Estudiar React', //aqui falla algonp
+    estado: false
+}
 
 export const useTask = () => {
     const [taskInput, setTaskInput] = useState("");
@@ -45,6 +50,10 @@ export const useTask = () => {
         console.log("Eliminado");
         setTaskList(taskList.filter(task => task.id != id))
         // setTaskList()
+    }
+
+    const handlerEditTask = () => {
+
     }
 
     return {
